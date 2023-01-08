@@ -44,4 +44,9 @@ public static partial class Format
             return true;
         }
     }
+
+    /// <summary>
+    /// Concatenates strings without temprary string allocation.
+    /// </summary>
+    public static JoinFormattable Concat(IEnumerable<string> values) => new("", values);
 }

@@ -35,4 +35,11 @@ public static partial class Format
             return true;
         }
     }
+
+    /// <summary>
+    /// Concatenates <see cref="ISpanFormattable"/>s without temprary string allocation.
+    /// </summary>
+    public static JoinFormattable<T> Concat<T>(IEnumerable<T> values)
+        where T : ISpanFormattable
+        => new("", values);
 }

@@ -21,6 +21,22 @@ public class JoinTest
     }
 
     [Fact]
+    public void Concat()
+    {
+        Assert.Equal(
+            "abcd",
+            $"{Format.Concat(new[] { "a", "b", "c", "d" })}");
+
+        Assert.Equal(
+            "abcdefghijkl",
+            $"{Format.Concat(new[] { "abc", "def", "ghi", "jkl" })}");
+
+        Assert.Equal(
+            string.Concat(Enumerable.Repeat("123456789abcdefghijk", 100)),
+            $"{Format.Concat(Enumerable.Repeat("123456789abcdefghijk", 100))}");
+    }
+
+    [Fact]
     public void JoinT()
     {
         Assert.Equal(
@@ -34,6 +50,22 @@ public class JoinTest
         Assert.Equal(
             string.Join(" / ", Enumerable.Repeat(123456789, 100)),
             $"{Format.Join(" / ", Enumerable.Repeat(123456789, 100))}");
+    }
+
+    [Fact]
+    public void ConcatT()
+    {
+        Assert.Equal(
+            "1121231234",
+            $"{Format.Concat(new[] { 1, 12, 123, 1234 })}");
+
+        Assert.Equal(
+            "1000100000010000000001000000000000",
+            $"{Format.Concat(new long[] { 1000, 1000000, 1000000000, 1000000000000 })}");
+
+        Assert.Equal(
+            string.Concat(Enumerable.Repeat(123456789, 100)),
+            $"{Format.Concat(Enumerable.Repeat(123456789, 100))}");
     }
 
     [Fact]
