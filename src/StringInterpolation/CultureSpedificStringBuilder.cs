@@ -23,6 +23,11 @@ public static partial class StringBuilderExtensions
     /// <see cref="With(StringBuilder, IFormatProvider)"/> with <see cref="CultureInfo.InvariantCulture"/>.
     /// </summary>
     public static CultureSpedificStringBuilder Invariant(this StringBuilder builder) => new(builder, CultureInfo.InvariantCulture);
+
+    /// <summary>
+    /// <see cref="With(StringBuilder, IFormatProvider)"/> with <see cref="SortableDateTime.InvariantCulture"/>.
+    /// </summary>
+    public static CultureSpedificStringBuilder SortableInvariant(this StringBuilder builder) => new(builder, SortableDateTime.InvariantCulture);
 }
 
 /// <summary>
