@@ -14,7 +14,7 @@ public class IDefaultSpanFormattableTest
     }
 
     [Fact]
-    public void FormatFormat()
+    public void WithFormat()
     {
         var formats = new[]
         {
@@ -42,7 +42,7 @@ public class IDefaultSpanFormattableTest
     }
 
     [Fact]
-    public void FormatProvider()
+    public void WithProvider()
     {
         var providers = new[]
         {
@@ -86,7 +86,7 @@ public class IDefaultSpanFormattableTest
     }
 
     [Fact]
-    public void FormatLongerThan1000Chars()
+    public void WriteLongerThan1000Chars()
     {
         var expected = $"format:abcd/provider:{CultureInfo.InvariantCulture.GetType().Name}/"
             + string.Join("", Enumerable.Range(0, 100).Select(_ => "0123456789"));
