@@ -50,4 +50,22 @@ public class CultureSpedificStringBuilderTest
                 .Append($"{1.2} {1:C} {new DateOnly(2000, 1, 2)}")
                 .ToString());
     }
+
+    [Fact]
+    public void SortableInvariant()
+    {
+        Assert.Equal(
+            "1.2",
+            new StringBuilder()
+                .SortableInvariant()
+                .Append(1.2)
+                .ToString());
+
+        Assert.Equal(
+            "1.2 ¤1.00 2000-01-02",
+            new StringBuilder()
+                .SortableInvariant()
+                .Append($"{1.2} {1:C} {new DateOnly(2000, 1, 2)}")
+                .ToString());
+    }
 }
