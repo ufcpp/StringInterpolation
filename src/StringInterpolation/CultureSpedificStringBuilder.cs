@@ -30,10 +30,16 @@ public static partial class StringBuilderExtensions
     public static CultureSpedificStringBuilder SortableInvariant(this StringBuilder builder) => new(builder, SortableDateTime.InvariantCulture);
 }
 
+public interface IBuilderProviderPair
+{
+    StringBuilder Builder { get; }
+    IFormatProvider Provider { get; }
+}
+
 /// <summary>
 /// Always specifies explicit <see cref="Provider"/> on appending values to <see cref="StringBuilder"/>.
 /// </summary>
-public class CultureSpedificStringBuilder
+public class CultureSpedificStringBuilder : IBuilderProviderPair
 {
     public StringBuilder Builder { get; }
     public IFormatProvider Provider { get; }
@@ -75,7 +81,7 @@ public class CultureSpedificStringBuilder
     {
         private StringBuilder.AppendInterpolatedStringHandler _inner;
 
-        public InterpolatedStringHandler(int literalLength, int formattedCount, CultureSpedificStringBuilder destination)
+        public InterpolatedStringHandler(int literalLength, int formattedCount, IBuilderProviderPair destination)
             => _inner = new(literalLength, formattedCount, destination.Builder, destination.Provider);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
