@@ -10,8 +10,7 @@ public interface IBuilderFormattable : IDefaultSpanFormattable
 
     bool ISpanFormattable.TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
     {
-        charsWritten = 0;
-        var builder = new SpanStringBuilder(destination, ref charsWritten, provider);
+        var builder = new SpanStringBuilder(destination, out charsWritten, provider);
         return Format(builder, format);
     }
 }
