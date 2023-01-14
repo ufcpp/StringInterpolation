@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace StringInterpolation;
 
@@ -34,11 +35,12 @@ public ref struct SpanStringBuilder
     private readonly ref int _pos;
     private readonly IFormatProvider? _provider;
 
-    public SpanStringBuilder(Span<char> destination, ref int charsWritten) : this(destination, ref charsWritten, null) { }
+    public SpanStringBuilder(Span<char> destination, [UnscopedRef] out int charsWritten) : this(destination, out charsWritten, null) { }
 
-    public SpanStringBuilder(Span<char> destination, ref int charsWritten, IFormatProvider? provider)
+    public SpanStringBuilder(Span<char> destination, [UnscopedRef] out int charsWritten, IFormatProvider? provider)
     {
         _destination = destination;
+        charsWritten = 0;
         _pos = ref charsWritten;
         _provider = provider;
     }

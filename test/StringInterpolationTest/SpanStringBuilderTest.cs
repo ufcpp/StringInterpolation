@@ -6,8 +6,7 @@ public class SpanStringBuilderTest
     public void Append()
     {
         var destination = (stackalloc char[10]);
-        int charsWritten = 0;
-        var builder = new SpanStringBuilder(destination, ref charsWritten);
+        var builder = new SpanStringBuilder(destination, out var charsWritten);
 
         Assert.True(builder.Append("a"));
         Assert.True(builder.Success);
